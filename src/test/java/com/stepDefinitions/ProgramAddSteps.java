@@ -30,17 +30,7 @@ public class ProgramAddSteps {
     //private WebDriver pdriver;
     //private TestContext testcontext;
        private WebDriverWait wait;
-       
-    //private final ConfigReader configreader;
-    //private ProgramAddPage programadd ;
-
-//    public ProgramAddSteps(TestContext testcontext) {
-//        this.testcontext = testcontext;
-//        this.pdriver = testcontext.getDriver();
-//        this.wait = new WebDriverWait(pdriver, Duration.ofSeconds(30));
-//        this.configreader = new ConfigReader();
-//        this.programadd = new ProgramAddPage(pdriver,testcontext);
-//    }
+   
     
     ProgramAddPage programadd = new ProgramAddPage(DriverFactory.getDriver());
     //Actions action=new Actions(pdriver);

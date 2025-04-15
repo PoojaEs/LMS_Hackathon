@@ -144,20 +144,7 @@ public String getprogramDescription() {
     return utility.getElementAttribute(programDescription,"ng-reflect-model");
 }
 public void selectstatusActive() {
-//	//action.click(Activebutton).perform();
-	//this.js = (JavascriptExecutor) pdriver;
-//	 
-//    js.executeScript("arguments[0].scrollIntoView(true);", Activebutton);
-//	 try {
-//		 Activebutton.click();
-//         System.out.println("Clicked on Active status using Selenium click().");
-//    } catch (Exception e) {
-//         js.executeScript("arguments[0].click();", Activebutton);
-//        System.out.println("Clicked on Active status using JavaScript Executor.");
-//     }
-// 
-//	utility.waitForElement(Activebutton);
-	//action.click(Activebutton);
+
 	utility.ClickOnWebelement(Activebutton);
 }
 

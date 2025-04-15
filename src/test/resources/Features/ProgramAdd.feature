@@ -12,6 +12,7 @@ Then admin clicks on "Add New Program" submenu
 Scenario: Verify title of the pop up window
 Then Admin should see window title as "Program Details"
 
+@Asteriskmark
 Scenario: Verify mandatory fields with red asterisk mark
 Then Admin should see red  asterisk mark  beside mandatory field "Name"
 
@@ -47,7 +48,7 @@ Given admin clicks on "Add New Program" submenu
 When Admin enter valid details for mandatory fields and Click on save button
 Then Admin gets message 'Program Created Successfully'
 
-
+@createProgram
 Scenario: Verify added Program is created 
 Given admin clicks on "Program" in menubar
 When Admin searches with newly created "Program Name"
