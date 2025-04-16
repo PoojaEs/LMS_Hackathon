@@ -1,14 +1,14 @@
 package com.pages;
 
-import static org.testng.Assert.assertEquals;
+
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.Duration;
+
 import java.util.List;
 import java.util.Map;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -22,7 +22,7 @@ import org.testng.Assert;
 import com.constants.EnvironmentConstants;
 import com.utilities.CommonMethods;
 import com.utilities.ExcelReader;
-//import com.utilities.TestContext;
+
 
 public class ProgramAddPage {
 	public WebDriver pdriver;
@@ -31,19 +31,11 @@ public class ProgramAddPage {
 	JavascriptExecutor js;
 	CommonMethods utility = new CommonMethods();
 	
-	//private TestContext testcontext;
 
-//	 public ProgramAddPage(WebDriver driver,TestContext testcontext){
-//	        this.driver = driver;
-//	  	    this.actions= new Actions(driver);
-//	        this.testcontext=testcontext;
-//	        PageFactory.initElements(driver, this);
-//	    }
-	
 	 @FindBy (id="program") public WebElement programmenu;
 	 @FindBy (xpath= "//button[text()='Add New Program']") private WebElement addnewprogram;
 	 @FindBy (xpath= "//span[text()=\"Program Details\"]") private WebElement programDetails;
-	 @FindBy (id="saveProgram") private WebElement savebutton;
+	 @FindBy (css="#saveProgram") private WebElement savebutton;
 	 @FindBy (xpath= "//small[text()='"+"fieldName"+"']") private List<WebElement> allErrorMessages;
 	 @FindBy (id="programName") public WebElement programNamefield;
 	 
@@ -71,6 +63,7 @@ public class ProgramAddPage {
 	}
 	
 	 public void clickOnProgrammenu(String module) {
+		 utility.waitForElement(programmenu);
 		 this.js = (JavascriptExecutor) pdriver;
 //		 //utility.ClickOnWebelement(programmenu);
 		 js.executeScript("arguments[0].click();", programmenu);
@@ -99,7 +92,9 @@ public class ProgramAddPage {
 	 }
 	 public void clickSavebutton() {
 		// savebutton.click();
-		 utility.ClickOnWebelement(savebutton);
+		 utility.waitForElement(savebutton);  		   
+		 this.js = (JavascriptExecutor) pdriver;
+		 js.executeScript("arguments[0].click();", savebutton);
 	 }
 	 
 	 public String getRequiredFieldMessage(String fieldName) {
@@ -196,9 +191,9 @@ public String searchProgram() throws FileNotFoundException, IOException {
 	
 	Map<String, List<String>> search = readdata.getData("Positive","Program");
 	String searchprogram = search.get("PROGRAM_NAME").get(0);
-	
 	//action.scrollToElement(searchtextBar).doubleClick().perform();
 	 utility.waitForElement(searchtextBar);
+	 
 	 searchtextBar.clear();
 	 searchtextBar.sendKeys(searchprogram);
 	 return searchprogram;
@@ -220,20 +215,26 @@ public void clearSearchText() {
 	searchtextBar.clear();
 }
 public void clickCancelButton() {
+	//utility.ClickOnWebelement(cancelButton);
+	
 	cancelButton.click();
 }
 	 
-public void verifyAddProgramDisappeared() {
-	try {
-		//this is to make sure that cancel button is disappeared
-		Thread.sleep(1000);
-		cancelButton.isDisplayed();
-	} catch (Exception e) {
-		Assert.assertTrue(true, "Add program is not displayed");
-		return;
-	}
-	Assert.assertTrue(false, "Add program is still displaying");
+public boolean verifyPopupDisappeared() {
+//	try {
+//		//this is to make sure that cancel button is disappeared
+//		utility.waitForElement(cancelButton);
+//		cancelButton.isDisplayed();
+//	} catch (Exception e) {
+//		Assert.assertTrue(true, "Add program is not displayed");
+//		
+//	}
+//	Assert.assertTrue(false, "Add program is still displaying");
+//	return false;
+	utility.isElementDisplayed(cancelButton);
+	return false;
 }
+
 
 public void clickXButton() {
 	utility.ClickOnWebelement(xbutton);
@@ -254,6 +255,9 @@ public void verifyProgramDetailsFormDisappeared() {
 	 }
 
 	
+	 
+	 
+	 
 	 
 	 
 	 

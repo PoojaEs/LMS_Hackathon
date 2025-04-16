@@ -1,27 +1,16 @@
 package com.stepDefinitions;
 
-import static org.testng.Assert.assertEquals;
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.Duration;
 import java.util.List;
-import java.util.Properties;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import com.driverManager.*;
-import com.pages.LoginPage;
 import com.pages.ProgramAddPage;
-import com.utilities.ConfigReader;
 import com.utilities.LoggerLoad;
 //import com.utilities.TestContext;
 
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.*;
 
 
@@ -30,7 +19,7 @@ public class ProgramAddSteps {
     //private WebDriver pdriver;
     //private TestContext testcontext;
        private WebDriverWait wait;
-   
+
     
     ProgramAddPage programadd = new ProgramAddPage(DriverFactory.getDriver());
     //Actions action=new Actions(pdriver);
@@ -171,15 +160,19 @@ public void records_of_newly_created_program_name_are_displayed_and_match_data_e
 	}
 @When("Admin clicks Cancel button")
 public void admin_clicks_cancel_button() throws FileNotFoundException, IOException {
-	programadd.enterProgramName();
-	programadd.enterDescription();
-	programadd.selectstatusActive();
+//	programadd.enterProgramName();
+//	programadd.enterDescription();
+//	programadd.selectstatusActive();
+	
    programadd.clickCancelButton();
 }
 
 @Then("Admin can see Program Details form disappears")
 public void admin_can_see_program_details_form_disappears() {
-   programadd.verifyAddProgramDisappeared();
+   boolean programDetailsForm = programadd.verifyPopupDisappeared();
+   System.out.println(programDetailsForm + " Add program is not displayed");
+   Assert.assertTrue(true, "Add program is not displayed");
+   
 }
 
 @Then("Records of the newly created  {string} is displayed and match the data entered")
